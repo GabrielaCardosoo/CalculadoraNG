@@ -1,0 +1,64 @@
+body {
+    background-color: #A8D0E6; /* Fundo levemente azulado */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+/* Definindo a aparência do display */
+#display {
+    font-size: 1.5rem;
+    text-align: right;
+    background-color: #f2f2fa;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+/* Diminuindo o tamanho da fonte do placeholder */
+#display::placeholder {
+    font-size: 0.9rem;
+    color: #888;
+}
+
+/* Estilos dos botões */
+.btn {
+    font-size: 1.2rem;
+    padding: 15px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+/* Estilos específicos para cada tipo de botão */
+.btn-outline-secondary {
+    background-color: #f8f9fa;
+    color: #495057;
+    border-color: #ced4da;
+}
+
+.btn-outline-primary {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.btn-outline-danger {
+    background-color: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+
+.btn-outline-success {
+    background-color: #28a745;
+    color: white;
+    border-color: #28a745;
+}
+
+/* Estilo do container */
+.container {
+    margin-top: 50px;
+}
