@@ -1,78 +1,31 @@
 import { Component } from '@angular/core';
-
+ 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Calc_Bootstrap'
-  currentInput: string = '';  // Entrada atual
-  previousInput: string = ''; // Entrada anterior
-  operator: string = '';      // Operador (+, -, *, /)
-
-  // Captura os cliques nos botões
+  display = '';  // Variável para armazenar os números digitados
+  result = '';   // Variável para armazenar o resultado da operação
+ 
   handleClick(value: string) {
-    if (!isNaN(parseFloat(value)) || value === '.') {
-      this.appendNumber(value);
-    } else if (['+', '-', '*', '/'].includes(value)) {
-      this.setOperation(value);
-    } else if (value === '=') {
-      this.calculate();
+    if (value === '=') {
+      // Aqui você pode usar uma função para calcular o valor
+      try {
+        this.result = eval(this.display);  // Calcula a expressão
+      } catch (e) {
+        this.result = 'Error';  // Caso tenha um erro na expressão
+      }
+    } else if (value === 'C') {
+      this.clear();  // Se for 'C', limpa tudo
+    } else {
+      this.display += value;  // Caso contrário, adiciona o valor ao display
     }
   }
-
-  // Adiciona números ao display
-  appendNumber(number: string) {
-    this.currentInput += number;
-  }
-
-  // Define a operação matemática
-  setOperation(op: string) {
-    if (this.currentInput === '') return;
-    if (this.previousInput !== '') {
-      this.calculate();
-    }
-    this.operator = op;
-    this.previousInput = this.currentInput;
-    this.currentInput = '';
-  }
-
-  // Limpa o display
-  clearDisplay() {
-    this.currentInput = '';
-    this.previousInput = '';
-    this.operator = '';
-  }
-
-  // Calcula o resultado
-  calculate() {
-    if (this.previousInput === '' || this.currentInput === '') return;
-    let result: number;
-
-    switch (this.operator) {
-      case '+':
-        result = parseFloat(this.previousInput) + parseFloat(this.currentInput);
-        break;
-      case '-':
-        result = parseFloat(this.previousInput) - parseFloat(this.currentInput);
-        break;
-      case '*':
-        result = parseFloat(this.previousInput) * parseFloat(this.currentInput);
-        break;
-      case '/':
-        if (parseFloat(this.currentInput) === 0) {
-          alert('Erro: divisão por zero');
-          return;
-        }
-        result = parseFloat(this.previousInput) / parseFloat(this.currentInput);
-        break;
-      default:
-        return;
-    }
-
-    this.currentInput = result.toString();
-    this.previousInput = '';
-    this.operator = '';
+ 
+  clear() {
+    this.display = '';  // Limpa o conteúdo digitado
+    this.result = '';   // Limpa o resultado
   }
 }
